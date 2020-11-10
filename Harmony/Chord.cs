@@ -1,4 +1,5 @@
 using System.Text;
+using harmonyexplorer.Shared;
 
 namespace harmonyexplorer.Harmony
 {
@@ -19,16 +20,19 @@ namespace harmonyexplorer.Harmony
         {
             get
             {
-                return Minor && Flat5;
+                return false;
             }
         }
         public string BasicTriadString
         {
             get
             {
-                if (Diminished) return Root + "º";
-                if (Minor) return Root + "m";
-                return Root;
+                var sb = new StringBuilder();
+                sb.Append(Root);
+                if (Diminished) sb.Append(Helpers.DIMMINISHEDCHAR);
+                if (Minor) sb.Append(Helpers.MINORCHAR);
+                FlatSharpModifiers5(sb);
+                return sb.ToString();
             }
         }
         public string SeventhString
@@ -37,9 +41,9 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(Root);
-                if (Maj7) sb.Append("△");
-                if (Diminished) sb.Append("º");
-                if (Minor && !Diminished) sb.Append("m");
+                if (Maj7) sb.Append(Helpers.MAJCHAR);
+                if (Diminished) sb.Append(Helpers.DIMMINISHEDCHAR);
+                if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
                 sb.Append("7");
                 if (!Diminished) FlatSharpModifiers5(sb);
                 return sb.ToString();
@@ -51,8 +55,8 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(Root);
-                if (Maj7) sb.Append("△");
-                if (Minor) sb.Append("m");
+                if (Maj7) sb.Append(Helpers.MAJCHAR);//Helpers.MAJCHAR);
+                if (Minor) sb.Append(Helpers.MINORCHAR);
                 if (Flat9 || Sharp9)
                 {
                     sb.Append("7");
@@ -72,8 +76,8 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(Root);
-                if (Maj7) sb.Append("△");
-                if (Minor) sb.Append("m");
+                if (Maj7) sb.Append(Helpers.MAJCHAR);
+                if (Minor) sb.Append(Helpers.MINORCHAR);
                 if (!Sharp11 && !Flat11) sb.Append("11");
                 if ((Sharp11 || Flat11) && (!Sharp9 || !Flat9)) sb.Append("9");
                 if ((Sharp11 || Flat11) && (Sharp9 || Flat9)) sb.Append("7");
@@ -90,8 +94,8 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(Root);
-                if (Maj7) sb.Append("△");
-                if (Minor) sb.Append("m");
+                if (Maj7) sb.Append(Helpers.MAJCHAR);
+                if (Minor) sb.Append(Helpers.MINORCHAR);
                 if (!Sharp13 && !Flat13) sb.Append("13");
 
                 if (!Sharp11 && !Flat11 && (Sharp13 || Flat13)) sb.Append("11");
@@ -105,26 +109,26 @@ namespace harmonyexplorer.Harmony
         }
         private void FlatSharpModifiers13(StringBuilder sb)
         {
-            if (Flat13) sb.Append("♭13");
-            if (Sharp13) sb.Append("♯13");
+            if (Flat13) sb.Append(Helpers.FLATCHAR + "13");
+            if (Sharp13) sb.Append(Helpers.SHARPCHAR + "13");
             FlatSharpModifiers11(sb);
         }
         private void FlatSharpModifiers11(StringBuilder sb)
         {
-            if (Flat11) sb.Append("♭11");
-            if (Sharp11) sb.Append("♯11");
+            if (Flat11) sb.Append(Helpers.FLATCHAR + "11");
+            if (Sharp11) sb.Append(Helpers.SHARPCHAR + "11");
             FlatSharpModifiers9(sb);
         }
         private void FlatSharpModifiers9(StringBuilder sb)
         {
-            if (Flat9) sb.Append("♭9");
-            if (Sharp9) sb.Append("♯9");
+            if (Flat9) sb.Append(Helpers.FLATCHAR + "9");
+            if (Sharp9) sb.Append(Helpers.SHARPCHAR + "9");
             FlatSharpModifiers5(sb);
         }
         private void FlatSharpModifiers5(StringBuilder sb)
         {
-            if (Flat5) sb.Append("♭5");
-            if (Sharp5) sb.Append("♯5");
+            if (Flat5) sb.Append(Helpers.FLATCHAR + "5");
+            if (Sharp5) sb.Append(Helpers.SHARPCHAR + "5");
         }
         public string PlainTextChord(UpperExtensionEnum extension)
         {
