@@ -1,9 +1,15 @@
-Rebuilding css with tailwind (not included in build pipeline due to compability with Azure static webpage job)
+Rebuilding css with tailwind (not included in build pipeline due to compability with Azure static webpage job)<br>
 
-Remove extension from:
-  package.json.removeExtForTailwindBuild 
-  gulpefile.js.removeExtForTailwindBuild
+Remove extension from:<br>
 
-npm install gulp-cli -g
-npm install
-gulp css
+  package.json.removeExtForTailwindBuild <br>
+
+  gulpefile.js.removeExtForTailwindBuild<br>
+
+
+npm install gulp-cli -g<br>
+
+npm install<br>
+
+gulp css<br>
+
