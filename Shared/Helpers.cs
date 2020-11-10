@@ -15,7 +15,6 @@ namespace harmonyexplorer.Shared
 
         public const char SHARPCHAR = '♯';
         public const char DIMMINISHEDCHAR = 'º';
-
         public static string[] WhiteKeys
         {
             get
