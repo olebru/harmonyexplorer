@@ -13,13 +13,13 @@ namespace harmonyexplorer.Harmony
         public static Note[] Notes(Note root, ModeEnum degree)
         {
             var funcRelative = FunctionalScale.GetAbsouluteOffsetFromRoot(degree, 1);
-            var sharp = root.Name.Contains("♯");
+            var sharp = root.Name.Contains(Helpers.SHARPCHAR);
             if (root.Name == "C") sharp = true;
             if (root.Name == "G") sharp = true;
             if (root.Name == "D") sharp = true;
             if (root.Name == "A") sharp = true;
             if (root.Name == "E") sharp = true;
-            if (root.Name.Contains("♭")) sharp = false;
+            if (root.Name.Contains(Helpers.FLATCHAR)) sharp = false;
 
             var names = sharp ? Helpers.Sharps : Helpers.Flats;
 
@@ -35,6 +35,8 @@ namespace harmonyexplorer.Harmony
 
             //FIXME Dirty WET hack...
             bool tryagain = false;
+
+
             for (int i = 0; i < result.Length; i++)
             {
                 if (result[i].Name.ToArray()[0] != Helpers.WhiteKeys[i].ToArray()[0])
@@ -42,6 +44,7 @@ namespace harmonyexplorer.Harmony
                     tryagain = true;
                 }
             }
+
             if (tryagain && root.Name.Count() == 1)
             {
                 sharp = !sharp;
@@ -56,6 +59,49 @@ namespace harmonyexplorer.Harmony
                     result[i] = new Note(names[idxCurrentName]);
                 }
             }
+
+            bool tryagain2 = false;
+            var seen = new List<string>();
+            if (root.Name.Count() == 2)
+            {
+                for (int i = 0; i < result.Length; i++)
+                {
+                    if (!seen.Contains(result[i].Name))
+                    {
+                        seen.Add(result[i].Name);
+                    }
+                    else
+                    {
+
+                        tryagain2 = true;
+                    }
+                }
+            }
+
+
+            if (tryagain2)
+            {
+
+                names = sharp ? Helpers.Sharps : Helpers.Flats;
+                idxOfRootInNames = Array.IndexOf(names, root.Name);
+
+                sharp = !sharp;
+                names = sharp ? Helpers.Sharps : Helpers.Flats;
+
+
+                result = new Note[funcRelative.Length];
+                range = new System.Range(0, result.Length - 1); //Remove Last element as it is the root repeated... FIXME? 
+
+                for (int i = 0; i < funcRelative.Length; i++)
+                {
+                    var idxCurrentName = (funcRelative[i] + idxOfRootInNames) % names.Length;
+                    result[i] = new Note(names[idxCurrentName]);
+                }
+            }
+
+
+
+
             return result[range];
         }
         public static Chord[] Chords(Note root, ModeEnum degree)
