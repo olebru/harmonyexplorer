@@ -1,0 +1,47 @@
+@page "/"
+<div class="h-screen py-0 antialiased leading-tight min-h-full">
+        <button class="focus:outline-none py-1 px-1 align-self-end w-full border-0 text-right text-xs text-blue-500"
+                @onclick="@ToggleMenu">@(ShowMenu? "Hide" : "Show" )</button>
+
+        @if (ShowMenu)
+        {
+                <div class="grid grid-cols-12 gap-1 py-1 px-1">
+
+                        @foreach (var rootNote in Helpers.AllRealNotes)
+                        {
+                                <button class="focus:outline-none w-full py-1 border-0 rounded text-xs md:text-sm lg:text-base @((rootNote.Name.Contains(currentRoot.Name) && currentRoot.Name.Length > 1) || (rootNote.Name == currentRoot.Name) 
+                                        ? 
+                                        "bg-blue-700 text-blue-200" : "bg-blue-200 text-blue-700")"
+                                        @onclick="@(() => ChangeKey(rootNote))">@rootNote.Name</button>
+                        }
+                        </div>
+
+                <div class="grid grid-cols-5 gap-1 py-1 px-1">
+
+                        @foreach (var extension in Helpers.AllExtensions)
+                        {
+                                <button class="focus:outline-none w-full border-0 py-1 rounded text-xs md:text-sm lg:text-base @(upperExtensions == extension 
+                                        ? 
+                                        "bg-blue-700 text-blue-200" : "bg-blue-200 text-blue-700")"
+                                        @onclick="@(() => ChangeExtensions(extension))">@extension</button>
+                        }
+
+                        </div>
+                <div class="grid grid-cols-7 gap-1 py-1 px-1">
+
+                        @foreach (var mode in Helpers.AllModes)
+                        {
+                                <button class="focus:outline-none w-full border-0  py-1 rounded text-xs md:text-sm lg:text-base @(ModesToShow.Contains(mode) 
+                                        ? 
+                                        "bg-blue-700 text-blue-200" : "bg-blue-200 text-blue-700")"
+                                        @onclick="@(() => ToggleMode(mode))">@mode</button>
+                        }
+
+                        </div>
+        }
+
+        <ChordTableViewComponent headerValues="headerValues" data="data" upperExtensions="upperExtensions" />
+
+
+</div>
+<!-- Main chord grid -->
