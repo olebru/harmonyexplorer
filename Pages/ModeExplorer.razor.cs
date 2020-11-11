@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace harmonyexplorer.Pages
 {
-    public partial class Index : ComponentBase
+    public partial class ModeExplorer : ComponentBase
     {
         protected override void OnParametersSet()
         {
