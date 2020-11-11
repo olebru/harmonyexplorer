@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using harmonyexplorer.Harmony;
 using harmonyexplorer.Shared;
+using harmonyexplorer.Components;
 
 using System.Linq;
 
@@ -32,14 +33,6 @@ namespace harmonyexplorer.Pages
         }
         public UpperExtensionEnum upperExtensions { get; set; }
 
-        private Chord drillDownToChord;
-        private UpperExtensionEnum drillDownToChordExtension;
-        public void DrillDownChord(Chord chord)
-        {
-            // drillDownToChord = chord;
-            //  drillDownToChordExtension = extension;
-
-        }
         List<List<ModeWithChords>> data;
 
         List<ModeEnum> ModesToShow { get; set; }
