@@ -19,7 +19,6 @@ namespace harmonyexplorer.Components
         [Parameter]
         public UpperExtensionEnum upperExtensions { get; set; }
 
-
         [Parameter]
         public string[] headerValues { get; set; }
 

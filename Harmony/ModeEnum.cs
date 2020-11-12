@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
 
-namespace  harmonyexplorer.Harmony
+namespace harmonyexplorer.Harmony
 {
     public enum ModeEnum
     {
-        Ionian = 0,
-        Dorian = 1,
-        Phrygian = 2,
-        Lydian = 3,
-        Mixolydian = 4,
-        Aeolian = 5,
-        Locrian = 6
+        Ionian,
+        Dorian,
+        Phrygian,
+        Lydian,
+        Mixolydian,
+        Aeolian,
+        Locrian,
+        WholeTone,
+        NaturalMinor,
+        MelodicMinor,
+        HarmonicMinor
+
     }
 }
