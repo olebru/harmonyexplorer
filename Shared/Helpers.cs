@@ -47,8 +47,6 @@ namespace harmonyexplorer.Shared
                     result.Add(mode);
                 }
 
-
-
                 return result;
             }
         }
@@ -57,11 +55,11 @@ namespace harmonyexplorer.Shared
             get
             {
                 var result = new List<UpperExtensionEnum>();
-                result.Add(UpperExtensionEnum.Triads);
-                result.Add(UpperExtensionEnum.Sevenths);
-                result.Add(UpperExtensionEnum.Ninths);
-                result.Add(UpperExtensionEnum.Ellevenths);
-                result.Add(UpperExtensionEnum.Thirteenths);
+
+                foreach (UpperExtensionEnum extensionEnum in (UpperExtensionEnum[])Enum.GetValues(typeof(UpperExtensionEnum)))
+                {
+                    result.Add(extensionEnum);
+                }
 
                 return result;
             }
