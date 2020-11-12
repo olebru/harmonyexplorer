@@ -10,9 +10,9 @@ namespace harmonyexplorer.Harmony
 {
     public class HarmonyCalculator
     {
-        public static Note[] Notes(Note root, ModeEnum degree)
+        public static Note[] Notes(Note root, ModeEnum mode)
         {
-            var funcRelative = FunctionalScale.GetAbsouluteOffsetFromRoot(degree, 1);
+            var funcRelative = FunctionalScale.GetAbsouluteOffsetFromRoot(mode, 1);
             var sharp = root.Name.Contains(Helpers.SHARPCHAR);
             if (root.Name == "C") sharp = true;
             if (root.Name == "G") sharp = true;
@@ -104,12 +104,12 @@ namespace harmonyexplorer.Harmony
 
             return result[range];
         }
-        public static Chord[] Chords(Note root, ModeEnum degree)
+        public static Chord[] Chords(Note root, ModeEnum mode)
         {
-            var rootNames = Notes(root, degree);
+            var rootNames = Notes(root, mode);
 
             Chord[] result = new Chord[rootNames.Length];
-            var relativeStepsFromRoot = FunctionalScale.GetAbsouluteOffsetFromRoot(degree, octaves: 3);
+            var relativeStepsFromRoot = FunctionalScale.GetAbsouluteOffsetFromRoot(mode, octaves: 3);
 
             for (int i = 0; i < rootNames.Length; i++)
             {
@@ -131,12 +131,12 @@ namespace harmonyexplorer.Harmony
             return result;
         }
 
-        public static ModeWithChords GetModeWithChords(Note root, ModeEnum degree)
+        public static ModeWithChords GetModeWithChords(Note root, ModeEnum mode)
         {
-            var chords = Chords(root, degree);
+            var chords = Chords(root, mode);
             var result = new ModeWithChords();
 
-            result.Mode = degree;
+            result.Mode = mode;
             result.First = chords[0];
             result.Second = chords[1];
             result.Third = chords[2];
@@ -152,11 +152,11 @@ namespace harmonyexplorer.Harmony
             //var result = new ModeWithChords[7 * (int)extensions];
             var fullresult = new List<List<ModeWithChords>>();
 
-            for (int scaleDegreeInt = 0; scaleDegreeInt < 7; scaleDegreeInt++)
+            foreach (var mode in Helpers.AllModes)
             {
                 var moderesult = new List<ModeWithChords>();
 
-                moderesult.Add(GetModeWithChords(root, (ModeEnum)(scaleDegreeInt)));
+                moderesult.Add(GetModeWithChords(root, mode));
                 fullresult.Add(moderesult);
             }
             return fullresult;
