@@ -15,6 +15,10 @@ namespace harmonyexplorer.Shared
 
         public const char SHARPCHAR = '♯';
         public const char DIMMINISHEDCHAR = 'º';
+
+        public const string SUS2STRING = "sus2";
+        public const string SUS4STRING = "sus4";
+
         public static string[] WhiteKeys
         {
             get

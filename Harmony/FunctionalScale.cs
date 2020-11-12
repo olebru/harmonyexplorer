@@ -14,19 +14,14 @@ namespace harmonyexplorer.Harmony
 
         private static int[] _baseHarmonicMinor = new int[] { 2, 1, 2, 2, 1, 3, 1 };
 
+        private static int[] _baseExperimental = new int[] { 1, 1, 1, 1, 1, 1, 1 };
+
+
         private static int[] getStepsSingleOctaveIncludeRoot(ModeEnum mode)
         {
             int[] result = new int[_base.Length + 1];
             switch (mode)
             {
-                case ModeEnum.WholeTone:
-                    result[0] = 0;
-                    for (int i = 0; i < _baseWholeTone.Length; i++)
-                    {
-                        int offset = (i % _baseWholeTone.Length);
-                        result[i + 1] = _baseWholeTone[offset];
-                    }
-                    break;
 
                 case ModeEnum.NaturalMinor:
                     result[0] = 0;
@@ -46,8 +41,6 @@ namespace harmonyexplorer.Harmony
                     }
                     break;
 
-
-
                 case ModeEnum.MelodicMinor:
                     result[0] = 0;
                     for (int i = 0; i < _baseMelodicMinor.Length; i++)
@@ -56,7 +49,6 @@ namespace harmonyexplorer.Harmony
                         result[i + 1] = _baseMelodicMinor[offset];
                     }
                     break;
-
 
                 default:
                     {
