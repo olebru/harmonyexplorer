@@ -29,7 +29,6 @@ namespace harmonyexplorer.Harmony
                 result.Add(Seventh);
                 return result.ToArray();
             }
-
         }
     }
 }

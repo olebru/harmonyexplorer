@@ -6,26 +6,78 @@ namespace harmonyexplorer.Harmony
     {
         private static int[] _base = new int[] { 2, 2, 1, 2, 2, 2, 1 };
 
-        public static String ModeNameMuke(XXScaleDegreeEnum degree)
-        {
-            return ((ModeEnum)degree).ToString();
-        }
-        private static int[] getStepsSingleOctaveIncludeRoot(ModeEnum degree)
-        {
+        private static int[] _baseWholeTone = new int[] { 2, 2, 2, 2, 2, 2, 2 };
 
+        private static int[] _baseNaturalMinor = new int[] { 2, 1, 2, 2, 1, 2, 2 };
+
+        private static int[] _baseMelodicMinor = new int[] { 2, 1, 2, 2, 2, 2, 1 };
+
+        private static int[] _baseHarmonicMinor = new int[] { 2, 1, 2, 2, 1, 3, 1 };
+
+        private static int[] getStepsSingleOctaveIncludeRoot(ModeEnum mode)
+        {
             int[] result = new int[_base.Length + 1];
-            result[0] = 0; //root tests
-            for (int i = 0; i < _base.Length; i++)
+            switch (mode)
             {
-                int offset = ((i + (int)degree) % _base.Length);
-                result[i + 1] = _base[offset];
+                case ModeEnum.WholeTone:
+                    result[0] = 0;
+                    for (int i = 0; i < _baseWholeTone.Length; i++)
+                    {
+                        int offset = (i % _baseWholeTone.Length);
+                        result[i + 1] = _baseWholeTone[offset];
+                    }
+                    break;
+
+                case ModeEnum.NaturalMinor:
+                    result[0] = 0;
+                    for (int i = 0; i < _baseNaturalMinor.Length; i++)
+                    {
+                        int offset = (i % _baseNaturalMinor.Length);
+                        result[i + 1] = _baseNaturalMinor[offset];
+                    }
+                    break;
+
+                case ModeEnum.HarmonicMinor:
+                    result[0] = 0;
+                    for (int i = 0; i < _baseHarmonicMinor.Length; i++)
+                    {
+                        int offset = (i % _baseHarmonicMinor.Length);
+                        result[i + 1] = _baseHarmonicMinor[offset];
+                    }
+                    break;
+
+
+
+                case ModeEnum.MelodicMinor:
+                    result[0] = 0;
+                    for (int i = 0; i < _baseMelodicMinor.Length; i++)
+                    {
+                        int offset = (i % _baseMelodicMinor.Length);
+                        result[i + 1] = _baseMelodicMinor[offset];
+                    }
+                    break;
+
+
+                default:
+                    {
+                        result[0] = 0;
+                        for (int i = 0; i < _base.Length; i++)
+                        {
+                            int offset = ((i + (int)mode) % _base.Length);
+                            result[i + 1] = _base[offset];
+                        }
+                        break;
+                    }
+
             }
+
+
 
             return result;
         }
-        public static int[] GetAbsouluteOffsetFromRoot(ModeEnum degree, int octaves)
+        public static int[] GetAbsouluteOffsetFromRoot(ModeEnum mode, int octaves)
         {
-            var steps = GetSteps(degree, octaves);
+            var steps = GetSteps(mode, octaves);
             var result = new int[steps.Length];
 
             for (int i = 0; i < steps.Length; i++)
@@ -41,10 +93,10 @@ namespace harmonyexplorer.Harmony
             }
             return result;
         }
-        public static int[] GetSteps(ModeEnum degree, int octaves)
+        public static int[] GetSteps(ModeEnum mode, int octaves)
         {
 
-            var singleOctave = getStepsSingleOctaveIncludeRoot(degree);
+            var singleOctave = getStepsSingleOctaveIncludeRoot(mode);
 
             int[] result = new int[((singleOctave.Length - 1) * octaves) + 1];
 
