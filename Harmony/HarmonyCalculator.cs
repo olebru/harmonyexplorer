@@ -122,7 +122,7 @@ namespace harmonyexplorer.Harmony
                 int stepsToEleventh = relativeStepsFromRoot[i + 10] - relativeStepsFromRoot[i];
                 int stepsToThrirteenth = relativeStepsFromRoot[i + 12] - relativeStepsFromRoot[i];
 
-                var c = new Chord(name, stepsToThird, stepsToFifth, stepsToEleventh, stepsToNinth, stepsToEleventh, stepsToThrirteenth);
+                var c = new Chord(name, stepsToThird, stepsToFifth, stepsToSeventh, stepsToNinth, stepsToEleventh, stepsToThrirteenth);
 
                 result[i] = c;
 
