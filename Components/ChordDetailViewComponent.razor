@@ -1,7 +1,7 @@
-<div class="fixed abosulte w-full h-full z-40 bg-blue-900 bg-opacity-25
-@(chord.ShowDetails ? "hidden" : "")">
-    <div class="fixed relative h-24 w-24 bg-gray-400 bg-opacity-100 center">
-        <div class="">@chord.PlainTextChordWithOutModifiers(extension)</div>
-        <div class="text-sm">@chord.Modifiers(extension)</div>
+<div class="fixed abosulte inset-0 w-screen h-screen z-40 bg-blue-400 bg-opacity-25
+@(chord.ShowDetails ? "" : "hidden")">
+    <div class="fixed relative h-24 w-24 bg-gray-400 bg-opacity-100 center text-black-900">
+        <button @onclick="Close">Close</button>
     </div>
+
 </div>

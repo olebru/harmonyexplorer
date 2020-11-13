@@ -12,9 +12,9 @@ namespace harmonyexplorer.Components
             base.OnParametersSet();
         }
 
-        void ToggleDetails()
+        void ShowDetails()
         {
-            chord.ShowDetails = !chord.ShowDetails;
+            chord.ShowDetails = true;
         }
 
         [Parameter]

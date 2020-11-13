@@ -10,10 +10,14 @@ namespace harmonyexplorer.Components
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
+        }
 
-
+        void Close()
+        {
+            chord.ShowDetails = false;
 
         }
+
 
         [Parameter]
         public UpperExtensionEnum extension { get; set; }
