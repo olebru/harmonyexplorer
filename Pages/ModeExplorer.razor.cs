@@ -14,10 +14,12 @@ namespace harmonyexplorer.Pages
         {
             base.OnParametersSet();
 
-            upperExtensions = UpperExtensionEnum.Triads;
+            // upperExtensions = UpperExtensionEnum.Triads;
             currentRoot = Helpers.AllNotes[0];
             ModesToShow = new List<ModeEnum>();
             ModesToShow.Add(ModeEnum.Ionian);
+            UpperExtensionsToShow = new List<UpperExtensionEnum>();
+            UpperExtensionsToShow.Add(UpperExtensionEnum.Triads);
             headerValues = tempHeaderFFS;
 
             updateData();
@@ -31,11 +33,12 @@ namespace harmonyexplorer.Pages
 
             showMenu = !showMenu;
         }
-        public UpperExtensionEnum upperExtensions { get; set; }
+        // public UpperExtensionEnum upperExtensions { get; set; }
 
         List<List<ModeWithChords>> data;
 
         List<ModeEnum> ModesToShow { get; set; }
+        List<UpperExtensionEnum> UpperExtensionsToShow { get; set; }
         Note currentRoot;
         private void updateData()
         {
@@ -49,6 +52,20 @@ namespace harmonyexplorer.Pages
                     temp.Add(modeList);
                 }
             }
+
+            //sort extensions...
+
+            var tempExtensions = new List<UpperExtensionEnum>();
+            foreach (var ext in Helpers.AllExtensions)
+            {
+                if (UpperExtensionsToShow.Contains(ext)) tempExtensions.Add(ext);
+
+            }
+
+            UpperExtensionsToShow = tempExtensions;
+
+
+
 
 
             data = temp;
@@ -75,25 +92,38 @@ namespace harmonyexplorer.Pages
             return note.Name == currentRoot.Name;
         }
 
-        public void ChangeExtensions(UpperExtensionEnum value)
-        {
-            upperExtensions = value;
-            updateData();
-        }
+        // public void ChangeExtensions(UpperExtensionEnum value)
+        // {
+        //     upperExtensions = value;
+        //     updateData();
+        // }
 
-        public void ToggleMode(ModeEnum degree)
+        public void ToggleMode(ModeEnum mode)
         {
-            if (ModesToShow.Contains(degree))
+            if (ModesToShow.Contains(mode))
             {
-                ModesToShow.Remove(degree);
+                ModesToShow.Remove(mode);
             }
             else
             {
-                ModesToShow.Add(degree);
+                ModesToShow.Add(mode);
             }
+
             updateData();
         }
 
+        public void ToggleExtension(UpperExtensionEnum extension)
+        {
+            if (UpperExtensionsToShow.Contains(extension))
+            {
+                UpperExtensionsToShow.Remove(extension);
+            }
+            else
+            {
+                UpperExtensionsToShow.Add(extension);
+            }
+            updateData();
+        }
         public string[] headerValues;
         public void NextHeaderText()
         {
