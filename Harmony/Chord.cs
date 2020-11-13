@@ -152,9 +152,10 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(RootName);
+                if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
                 if (Maj7) sb.Append(Helpers.MAJCHAR);
 
-                if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
+
 
                 sb.Append("7");
 
@@ -170,9 +171,10 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(RootName);
+                if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
                 if (Maj7) sb.Append(Helpers.MAJCHAR);
 
-                if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
+
 
                 sb.Append("7");
 
@@ -198,8 +200,9 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(RootName);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);//Helpers.MAJCHAR);
                 if (Minor) sb.Append(Helpers.MINORCHAR);
+                if (Maj7) sb.Append(Helpers.MAJCHAR);//Helpers.MAJCHAR);
+
                 if (Perfect9)
                 {
                     sb.Append("9");
@@ -220,8 +223,9 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(RootName);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);//Helpers.MAJCHAR);
                 if (Minor) sb.Append(Helpers.MINORCHAR);
+                if (Maj7) sb.Append(Helpers.MAJCHAR);//Helpers.MAJCHAR);
+
                 if (Perfect9)
                 {
                     sb.Append("9");
@@ -253,8 +257,9 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(RootName);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
                 if (Minor) sb.Append(Helpers.MINORCHAR);
+                if (Maj7) sb.Append(Helpers.MAJCHAR);
+
                 if (Perfect11) sb.Append("11");
                 if (!Perfect11 && Perfect9) sb.Append("9");
 
@@ -274,8 +279,9 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(RootName);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
                 if (Minor) sb.Append(Helpers.MINORCHAR);
+                if (Maj7) sb.Append(Helpers.MAJCHAR);
+
                 if (Perfect11) sb.Append("11");
                 if (!Perfect11 && Perfect9) sb.Append("9");
 
@@ -305,8 +311,9 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(RootName);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
                 if (Minor) sb.Append(Helpers.MINORCHAR);
+                if (Maj7) sb.Append(Helpers.MAJCHAR);
+
                 if (Perfect13) sb.Append("13");
 
                 if (!Perfect13 && Perfect11) sb.Append("11");
@@ -326,8 +333,9 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 sb.Append(RootName);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
                 if (Minor) sb.Append(Helpers.MINORCHAR);
+                if (Maj7) sb.Append(Helpers.MAJCHAR);
+
                 if (Perfect13) sb.Append("13");
 
                 if (!Perfect13 && Perfect11) sb.Append("11");
