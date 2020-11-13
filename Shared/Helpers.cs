@@ -7,7 +7,7 @@ namespace harmonyexplorer.Shared
     public static class Helpers
     {
 
-        public const char MAJCHAR = '△';
+        public const char MAJCHAR = 'Maj';
 
         public const char MINORCHAR = 'm';
 
