@@ -45,15 +45,15 @@ namespace harmonyexplorer.Harmony
         public bool Maj7 { get { return StepsToSeventh == 11; } }
         //12 would be octave of root
         public bool Flat9 { get { return StepsToNinth == 13; } }
-        public bool Perfect9 { get { return StepsToFifth == 14; } }
+        public bool Perfect9 { get { return StepsToNinth == 14; } }
         public bool Sharp9 { get { return StepsToNinth == 15; } }
 
         public bool Flat11 { get { return StepsToEleventh == 16; } }
-        public bool Perfect11 { get { return StepsToFifth == 17; } }
+        public bool Perfect11 { get { return StepsToEleventh == 17; } }
         public bool Sharp11 { get { return StepsToEleventh == 18; } }
 
         public bool Flat13 { get { return StepsToThrirteenth == 20; } }
-        public bool Perfect13 { get { return StepsToFifth == 21; } }
+        public bool Perfect13 { get { return StepsToThrirteenth == 21; } }
         public bool Sharp13 { get { return StepsToThrirteenth == 22; } }
 
         public string UnknownBaseStep
@@ -258,7 +258,7 @@ namespace harmonyexplorer.Harmony
                 if (Perfect11) sb.Append("11");
                 if (!Perfect11 && Perfect9) sb.Append("9");
 
-                if (!Perfect11 && !Perfect11) sb.Append("7");
+                if (!Perfect11 && !Perfect11 && !Perfect9) sb.Append("7");
 
 
 
@@ -279,7 +279,7 @@ namespace harmonyexplorer.Harmony
                 if (Perfect11) sb.Append("11");
                 if (!Perfect11 && Perfect9) sb.Append("9");
 
-                if (!Perfect11 && !Perfect11) sb.Append("7");
+                if (!Perfect11 && !Perfect11 && !Perfect9) sb.Append("7");
 
 
 
