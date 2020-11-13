@@ -8,14 +8,14 @@
         {      
                 <button class="text-left font-bold bg-blue-100 text-blue-500 py-1 px-0 w-full focus:outline-none text-xs md:text-sm lg:text-base">@modeList[0].Mode</button>
         
-                @for (int extensionInt = 0; extensionInt < (int)(upperExtensions) + 1; extensionInt++)
+                @foreach(var extension in upperExtensions)
                 {
                         @foreach (var modeWithChords in modeList)
                         { 
                                 <div class = "grid grid-cols-7">
                                         @foreach (var chord in modeWithChords.Chords)
                                         {
-                                                <ChordViewComponent chord = "@chord" extension = "@((UpperExtensionEnum)extensionInt)"/>
+                                                <ChordViewComponent chord = "@chord" extension = "@extension"/>
                                         }
                                 </div>                             
                         }
