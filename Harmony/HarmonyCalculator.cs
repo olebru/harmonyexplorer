@@ -54,9 +54,9 @@ namespace harmonyexplorer.Harmony
 
             if (tryagain)
             {
+
                 sharp = !sharp;
                 names = sharp ? Helpers.Sharps : Helpers.Flats;
-                idxOfRootInNames = Array.IndexOf(names, root.Name);
                 result = new Note[funcRelative.Length];
                 range = new System.Range(0, result.Length - 1); //Remove Last element as it is the root repeated... FIXME? 
 
