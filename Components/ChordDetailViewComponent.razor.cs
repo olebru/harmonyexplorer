@@ -5,16 +5,14 @@ using harmonyexplorer.Harmony;
 namespace harmonyexplorer.Components
 {
 
-    public partial class ChordViewComponent : ComponentBase
+    public partial class ChordDetailViewComponent : ComponentBase
     {
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
-        }
 
-        void ToggleDetails()
-        {
-            chord.ShowDetails = !chord.ShowDetails;
+
+
         }
 
         [Parameter]
@@ -23,6 +21,8 @@ namespace harmonyexplorer.Components
 
         [Parameter]
         public Chord chord { get; set; }
+
+
 
     }
 }

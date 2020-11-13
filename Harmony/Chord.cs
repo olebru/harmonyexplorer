@@ -20,6 +20,7 @@ namespace harmonyexplorer.Harmony
             this.StepsToThrirteenth = StepsToThrirteenth;
         }
 
+        public bool ShowDetails { get; set; } = false;
         public int StepsToThird { get; set; }
         public int StepsToFifth { get; set; }
         public int StepsToSeventh { get; set; }
