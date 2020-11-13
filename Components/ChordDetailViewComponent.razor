@@ -1,7 +1,6 @@
-<div class="fixed abosulte inset-0 w-screen h-screen z-40 bg-blue-400 bg-opacity-25
-@(chord.ShowDetails ? "" : "hidden")">
-    <div class="fixed relative h-24 w-24 bg-gray-400 bg-opacity-100 center text-black-900">
-        <button @onclick="Close">Close</button>
+<div
+    class="fixed abosulte inset-0 w-screen h-screen z-40 bg-blue-400 bg-opacity-25 @(chord.ShowDetails ? "" : "hidden")">
+    <div class="object-center  h-50 w-50 rounded bg-blue-100 bg-opacity-100 center text-black-900">
+        <button class="object-center" @onclick="Close">Close</button>
     </div>
-
 </div>
