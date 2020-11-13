@@ -12,7 +12,7 @@ namespace harmonyexplorer.Harmony
         Mixolydian,
         Aeolian,
         Locrian,
-        // WholeTone,
+        WholeTone,
         NaturalMinor,
         MelodicMinor,
         HarmonicMinor,
