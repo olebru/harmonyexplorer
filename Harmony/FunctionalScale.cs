@@ -50,6 +50,15 @@ namespace harmonyexplorer.Harmony
                     }
                     break;
 
+                case ModeEnum.WholeTone:
+                    result[0] = 0;
+                    for (int i = 0; i < _baseWholeTone.Length; i++)
+                    {
+                        int offset = (i % _baseWholeTone.Length);
+                        result[i + 1] = _baseWholeTone[offset];
+                    }
+                    break;
+
                 default:
                     {
                         result[0] = 0;
