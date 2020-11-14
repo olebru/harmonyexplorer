@@ -5,17 +5,20 @@ using harmonyexplorer.Harmony;
 namespace harmonyexplorer.Components
 {
 
-    public partial class ChordViewComponent : ComponentBase
+    public partial class ChordDetailViewComponent : ComponentBase
     {
         protected override void OnParametersSet()
         {
+            chord.IncludedExtensions = extension;
             base.OnParametersSet();
         }
 
-        void ShowDetails()
+        void Close()
         {
-            chord.ShowDetails = true;
+            chord.ShowDetails = false;
+
         }
+
 
         [Parameter]
         public UpperExtensionEnum extension { get; set; }
@@ -23,6 +26,8 @@ namespace harmonyexplorer.Components
 
         [Parameter]
         public Chord chord { get; set; }
+
+
 
     }
 }

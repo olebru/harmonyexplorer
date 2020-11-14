@@ -1,0 +1,95 @@
+<!--<div
+    class="fixed inset-0 h-screen w-screen  )">
+    <div class="fixed  shadow-lg align-middle oletest top-0 left-0 content-center rounded  bg-white-900  center text-black-900">
+
+
+        -translate-x-1/2
+        -translate-y-1/2
+
+
+        <div class="max-w-sm rounded  shadow-lg">
+            <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+        <p class="text-gray-700 text-base">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+        </p>
+    </div>
+    <div class="px-6 pt-4 pb-2">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+        <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" @onclick="Close">Close</button>
+    </div>
+    </div>
+
+
+    </div>
+    <div class="absolute w-screen h-screen bg-blue-600 bg-opacity-25" />
+</div>-->
+
+<div class="fixed inset-0 w-screen h-screen bg-blue-600 bg-opacity-25 @(chord.ShowDetails ? "" : "hidden")" />
+
+<div class="fixed rounded inset-0 flex items-center justify-center @(chord.ShowDetails ? "" : "hidden")">
+    <div class="w-full h-full p-1 bg-opacity-100 bg-blue-100 rounded fixed shadow-lg text-blue-700">
+        <div class="inline-flex">
+            <div class=>@chord.PlainTextChordWithOutModifiers(@chord.IncludedExtensions)</div>
+            <div class="text-sm">@chord.Modifiers(@chord.IncludedExtensions)</div>
+        </div>
+        <div>Parts :</div>
+        <div class="grid grid-cols-7 gap-4">
+
+            @foreach (var ext in Helpers.AllExtensions)
+            {
+
+                int rootOffset = Array.IndexOf(chord.NoteNamesInOriginScale, chord.NoteNamesInOriginScale.Single(n => n.Name
+                == chord.RootName));
+
+                if ((int)ext <= (int)chord.IncludedExtensions)
+                {
+                    switch (ext)
+                    {
+                        case UpperExtensionEnum.Triads:
+                            <div>1:@chord.NoteNamesInOriginScale[(1 + rootOffset -1) % (chord.NoteNamesInOriginScale.Length)].Name
+                            </div>
+                            <div>3:@chord.NoteNamesInOriginScale[(3 + rootOffset -1) % (chord.NoteNamesInOriginScale.Length)].Name
+                            </div>
+                            <div>5:@chord.NoteNamesInOriginScale[(5 + rootOffset -1) % (chord.NoteNamesInOriginScale.Length)].Name
+                            </div>
+                            break;
+
+                        case UpperExtensionEnum.Sevenths:
+                            <div>7:@chord.NoteNamesInOriginScale[(7 + rootOffset -1) % (chord.NoteNamesInOriginScale.Length)].Name
+                            </div>
+                            break;
+                        case UpperExtensionEnum.Ninths:
+                            <div>9:@chord.NoteNamesInOriginScale[(9 + rootOffset -1) % (chord.NoteNamesInOriginScale.Length)].Name
+                            </div>
+                            break;
+                        case UpperExtensionEnum.Ellevenths:
+                            <div>11:@chord.NoteNamesInOriginScale[(11 + rootOffset - 1) % (chord.NoteNamesInOriginScale.Length)].Name
+                            </div>
+                            break;
+                        case UpperExtensionEnum.Thirteenths:
+                            <div>13:@chord.NoteNamesInOriginScale[(13 + rootOffset- 1) % (chord.NoteNamesInOriginScale.Length)].Name
+                            </div>
+                            break;
+
+
+
+                    }
+
+                }
+            }
+
+
+        </div>
+        <div class="text-xs text-grey-500">
+            Testing of drilldown to chord. For now only showing all notes to build chord. <br> Plans? 5o5, how to get to
+            this chord, common subs etc.
+        </div>
+        <button
+            class="focus:outline-none w-full py-1 border-0 rounded text-xs md:text-sm lg:text-base bg-blue-200 text-blue-700"
+            @onclick="Close">Close</button>
+    </div>
+
+</div>
