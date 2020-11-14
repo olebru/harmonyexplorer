@@ -30,7 +30,7 @@
 <div class="fixed inset-0 w-screen h-screen bg-blue-600 bg-opacity-25 @(chord.ShowDetails ? "" : "hidden")" />
 
 <div class="fixed rounded inset-0 flex items-center justify-center @(chord.ShowDetails ? "" : "hidden")">
-    <div class="w-full h-full p-1 bg-opacity-100 bg-blue-100 rounded fixed shadow-lg text-blue-700">
+    <div class="w-full h-full sm:w-2/4 sm:h-auto p-1 bg-opacity-100 bg-blue-100 rounded fixed shadow-lg text-blue-700">
         <div class="inline-flex">
             <div class=>@chord.PlainTextChordWithOutModifiers(@chord.IncludedExtensions)</div>
             <div class="text-sm">@chord.Modifiers(@chord.IncludedExtensions)</div>
@@ -88,7 +88,7 @@
             this chord, common subs etc.
         </div>
         <button
-            class="focus:outline-none w-full py-1 border-0 rounded text-xs md:text-sm lg:text-base bg-blue-200 text-blue-700"
+            class="focus:outline-none px-2 py-1 border-0 rounded text-xs md:text-sm lg:text-base bg-blue-200 text-blue-700"
             @onclick="Close">Close</button>
     </div>
 
