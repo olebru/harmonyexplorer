@@ -9,7 +9,7 @@ namespace harmonyexplorer.Harmony
 
 
 
-        public Chord(string RootName, int StepsToThird, int StepsToFifth, int StepsToSeventh, int StepsToNinth, int StepsToEleventh, int StepsToThrirteenth)
+        public Chord(string RootName, int StepsToThird, int StepsToFifth, int StepsToSeventh, int StepsToNinth, int StepsToEleventh, int StepsToThrirteenth, Note[] NoteNamesInOriginScale)
         {
             this.RootName = RootName;
             this.StepsToThird = StepsToThird;
@@ -18,8 +18,12 @@ namespace harmonyexplorer.Harmony
             this.StepsToNinth = StepsToNinth;
             this.StepsToEleventh = StepsToEleventh;
             this.StepsToThrirteenth = StepsToThrirteenth;
+            this.NoteNamesInOriginScale = NoteNamesInOriginScale;
+
         }
 
+        public UpperExtensionEnum IncludedExtensions { get; set; }
+        public Note[] NoteNamesInOriginScale { get; set; }
         public bool ShowDetails { get; set; } = false;
         public int StepsToThird { get; set; }
         public int StepsToFifth { get; set; }

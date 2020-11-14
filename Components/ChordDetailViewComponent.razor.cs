@@ -9,6 +9,7 @@ namespace harmonyexplorer.Components
     {
         protected override void OnParametersSet()
         {
+            chord.IncludedExtensions = extension;
             base.OnParametersSet();
         }
 
