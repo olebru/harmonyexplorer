@@ -13,7 +13,7 @@ namespace harmonyexplorer.Harmony
             this.StepsToSeventh = StepsToSeventh;
             this.StepsToNinth = StepsToNinth;
             this.StepsToEleventh = StepsToEleventh;
-            this.StepsToThrirteenth = StepsToThrirteenth;
+            this.StepsToThirteenth = StepsToThrirteenth;
             this.NoteNamesInOriginScale = NoteNamesInOriginScale;
         }
         public UpperExtensionEnum IncludedExtensions { get; set; }
@@ -24,7 +24,7 @@ namespace harmonyexplorer.Harmony
         public int StepsToSeventh { get; set; }
         public int StepsToNinth { get; set; }
         public int StepsToEleventh { get; set; }
-        public int StepsToThrirteenth { get; set; }
+        public int StepsToThirteenth { get; set; }
         public string RootName { get; set; }
         public bool Sus2 { get { return StepsToThird == 2; } }
         public bool Minor { get { return StepsToThird == 3; } }
@@ -43,9 +43,9 @@ namespace harmonyexplorer.Harmony
         public bool Flat11 { get { return StepsToEleventh == 16; } }
         public bool Perfect11 { get { return StepsToEleventh == 17; } }
         public bool Sharp11 { get { return StepsToEleventh == 18; } }
-        public bool Flat13 { get { return StepsToThrirteenth == 20; } }
-        public bool Perfect13 { get { return StepsToThrirteenth == 21; } }
-        public bool Sharp13 { get { return StepsToThrirteenth == 22; } }
+        public bool Flat13 { get { return StepsToThirteenth == 20; } }
+        public bool Perfect13 { get { return StepsToThirteenth == 21; } }
+        public bool Sharp13 { get { return StepsToThirteenth == 22; } }
         public bool Diminished
         {
             get
@@ -95,7 +95,7 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var unknown = new StringBuilder();
-                if (StepsToThrirteenth < 20 || StepsToThrirteenth > 22) unknown.Append("error13=" + StepsToThrirteenth);
+                if (StepsToThirteenth < 20 || StepsToThirteenth > 22) unknown.Append("error13=" + StepsToThirteenth);
                 return unknown.ToString();
             }
         }
@@ -104,11 +104,9 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Diminished) sb.Append(Helpers.DIMMINISHEDCHAR);
-                if (Minor) sb.Append(Helpers.MINORCHAR);
-                if (Sus2) sb.Append(Helpers.SUS2STRING);
-                if (Sus4) sb.Append(Helpers.SUS4STRING);
+                RootAndMinorSusModifiers(sb);
+
+
                 return sb.ToString();
             }
         }
@@ -126,12 +124,9 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
 
-
-
+                RootAndMinorSusModifiers(sb);
+                MajModifier(sb);
                 sb.Append("7");
 
 
@@ -154,9 +149,8 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Minor) sb.Append(Helpers.MINORCHAR);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);//Helpers.MAJCHAR);
+                RootAndMinorSusModifiers(sb);
+                MajModifier(sb);
 
                 if (Perfect9)
                 {
@@ -188,9 +182,8 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Minor) sb.Append(Helpers.MINORCHAR);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
+                RootAndMinorSusModifiers(sb);
+                MajModifier(sb);
 
                 if (Perfect11) sb.Append("11");
                 if (!Perfect11 && Perfect9) sb.Append("9");
@@ -219,9 +212,8 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Minor) sb.Append(Helpers.MINORCHAR);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
+                RootAndMinorSusModifiers(sb);
+                MajModifier(sb);
 
                 if (Perfect13) sb.Append("13");
 
@@ -245,6 +237,17 @@ namespace harmonyexplorer.Harmony
 
                 return sb.ToString();
             }
+        }
+        private void RootAndMinorSusModifiers(StringBuilder sb)
+        {
+            sb.Append(RootName);
+            if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
+            if (Sus2) sb.Append(Helpers.SUS2STRING);
+            if (Sus4) sb.Append(Helpers.SUS4STRING);
+        }
+        private void MajModifier(StringBuilder sb)
+        {
+            if (Maj7) sb.Append(Helpers.MAJCHAR);
         }
         private void FlatSharpModifiers13(StringBuilder sb)
         {
