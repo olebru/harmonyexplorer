@@ -5,10 +5,6 @@ namespace harmonyexplorer.Harmony
 {
     public class Chord
     {
-
-
-
-
         public Chord(string RootName, int StepsToThird, int StepsToFifth, int StepsToSeventh, int StepsToNinth, int StepsToEleventh, int StepsToThrirteenth, Note[] NoteNamesInOriginScale)
         {
             this.RootName = RootName;
@@ -19,9 +15,7 @@ namespace harmonyexplorer.Harmony
             this.StepsToEleventh = StepsToEleventh;
             this.StepsToThrirteenth = StepsToThrirteenth;
             this.NoteNamesInOriginScale = NoteNamesInOriginScale;
-
         }
-
         public UpperExtensionEnum IncludedExtensions { get; set; }
         public Note[] NoteNamesInOriginScale { get; set; }
         public bool ShowDetails { get; set; } = false;
@@ -31,20 +25,14 @@ namespace harmonyexplorer.Harmony
         public int StepsToNinth { get; set; }
         public int StepsToEleventh { get; set; }
         public int StepsToThrirteenth { get; set; }
-
         public string RootName { get; set; }
-
         public bool Sus2 { get { return StepsToThird == 2; } }
         public bool Minor { get { return StepsToThird == 3; } }
         public bool Perfect3 { get { return StepsToThird == 4; } }
-
         public bool Sus4 { get { return StepsToThird == 5; } }
-
         public bool Flat5 { get { return StepsToFifth == 6; } }
         public bool Perfect5 { get { return StepsToFifth == 7; } }
-
         public bool Sharp5 { get { return StepsToFifth == 8; } }
-
         public bool DoubleFlat7LetsCallIt6 { get { return StepsToSeventh == 9; } }
         public bool Dominant7 { get { return StepsToSeventh == 10; } }
         public bool Maj7 { get { return StepsToSeventh == 11; } }
@@ -52,15 +40,19 @@ namespace harmonyexplorer.Harmony
         public bool Flat9 { get { return StepsToNinth == 13; } }
         public bool Perfect9 { get { return StepsToNinth == 14; } }
         public bool Sharp9 { get { return StepsToNinth == 15; } }
-
         public bool Flat11 { get { return StepsToEleventh == 16; } }
         public bool Perfect11 { get { return StepsToEleventh == 17; } }
         public bool Sharp11 { get { return StepsToEleventh == 18; } }
-
         public bool Flat13 { get { return StepsToThrirteenth == 20; } }
         public bool Perfect13 { get { return StepsToThrirteenth == 21; } }
         public bool Sharp13 { get { return StepsToThrirteenth == 22; } }
-
+        public bool Diminished
+        {
+            get
+            {
+                return false;
+            }
+        }
         public string UnknownBaseStep
         {
             get
@@ -107,28 +99,6 @@ namespace harmonyexplorer.Harmony
                 return unknown.ToString();
             }
         }
-
-        public bool Diminished
-        {
-            get
-            {
-                return false;
-            }
-        }
-        public string BasicTriadString
-        {
-            get
-            {
-                var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Diminished) sb.Append(Helpers.DIMMINISHEDCHAR);
-                if (Minor) sb.Append(Helpers.MINORCHAR);
-                if (Sus2) sb.Append(Helpers.SUS2STRING);
-                if (Sus4) sb.Append(Helpers.SUS4STRING);
-                FlatSharpModifiers5(sb);
-                return sb.ToString();
-            }
-        }
         public string BasicTriadStringBase
         {
             get
@@ -148,25 +118,6 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 FlatSharpModifiers5(sb);
-                return sb.ToString();
-            }
-        }
-        public string SeventhString
-        {
-            get
-            {
-                var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
-
-
-
-                sb.Append("7");
-
-                FlatSharpModifiers5(sb);
-
-
                 return sb.ToString();
             }
         }
@@ -194,30 +145,6 @@ namespace harmonyexplorer.Harmony
                 var sb = new StringBuilder();
 
                 FlatSharpModifiers5(sb);
-
-                return sb.ToString();
-            }
-        }
-
-        public string NinthString
-        {
-            get
-            {
-                var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Minor) sb.Append(Helpers.MINORCHAR);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);//Helpers.MAJCHAR);
-
-                if (Perfect9)
-                {
-                    sb.Append("9");
-                }
-                else
-                {
-                    sb.Append("7");
-                }
-                FlatSharpModifiers9(sb);
-
 
                 return sb.ToString();
             }
@@ -256,28 +183,6 @@ namespace harmonyexplorer.Harmony
                 return sb.ToString();
             }
         }
-        public string EleventhString
-        {
-            get
-            {
-                var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Minor) sb.Append(Helpers.MINORCHAR);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
-
-                if (Perfect11) sb.Append("11");
-                if (!Perfect11 && Perfect9) sb.Append("9");
-
-                if (!Perfect11 && !Perfect11 && !Perfect9) sb.Append("7");
-
-
-
-                FlatSharpModifiers11(sb);
-
-                return sb.ToString();
-            }
-        }
-
         public string EleventhStringBase
         {
             get
@@ -298,7 +203,6 @@ namespace harmonyexplorer.Harmony
                 return sb.ToString();
             }
         }
-
         public string EleventhStringModifiers
         {
             get
@@ -310,28 +214,6 @@ namespace harmonyexplorer.Harmony
                 return sb.ToString();
             }
         }
-        public string ThirteenthString
-        {
-            get
-            {
-                var sb = new StringBuilder();
-                sb.Append(RootName);
-                if (Minor) sb.Append(Helpers.MINORCHAR);
-                if (Maj7) sb.Append(Helpers.MAJCHAR);
-
-                if (Perfect13) sb.Append("13");
-
-                if (!Perfect13 && Perfect11) sb.Append("11");
-                if (!Perfect13 && !Perfect11 && Perfect9) sb.Append("9");
-                if (!Perfect13 && !Perfect11 && !Perfect9) sb.Append("7");
-
-
-                FlatSharpModifiers13(sb);
-
-                return sb.ToString();
-            }
-        }
-
         public string ThirteenthStringBase
         {
             get
@@ -353,7 +235,6 @@ namespace harmonyexplorer.Harmony
                 return sb.ToString();
             }
         }
-
         public string ThirteenthStringModifiers
         {
             get
@@ -387,27 +268,6 @@ namespace harmonyexplorer.Harmony
         {
             if (Flat5) sb.Append(Helpers.FLATCHAR + "5");
             if (Sharp5) sb.Append(Helpers.SHARPCHAR + "5");
-        }
-        public string PlainTextChord(UpperExtensionEnum extension)
-        {
-            if (UnknownBaseStep + Unknown7Step + Unknown9Step + Unknown11Step + Unknown13Step != string.Empty)
-                return UnknownBaseStep + Unknown7Step + Unknown9Step + Unknown11Step + Unknown13Step;
-
-            switch (extension)
-            {
-                case UpperExtensionEnum.Triads:
-                    return BasicTriadString;
-                case UpperExtensionEnum.Sevenths:
-                    return SeventhString;
-                case UpperExtensionEnum.Ninths:
-                    return NinthString;
-                case UpperExtensionEnum.Ellevenths:
-                    return EleventhString;
-                case UpperExtensionEnum.Thirteenths:
-                    return ThirteenthString;
-                default:
-                    return string.Empty;
-            }
         }
         public string PlainTextChordWithOutModifiers(UpperExtensionEnum extension)
         {
@@ -451,9 +311,5 @@ namespace harmonyexplorer.Harmony
                     return string.Empty;
             }
         }
-
-
     }
-
-
 }
