@@ -14,7 +14,7 @@ namespace harmonyexplorer.Harmony
         public Chord Fifth { get; set; }
         public Chord Sixth { get; set; }
         public Chord Seventh { get; set; }
-
+        public bool SharpAnnotation { get; set; }
         public Chord[] Chords
         {
             get
