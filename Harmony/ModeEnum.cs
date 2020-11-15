@@ -12,6 +12,7 @@ namespace harmonyexplorer.Harmony
         Mixolydian,
         Aeolian,
         Locrian,
+        // Nothing above this comment can be changed (Ordering for the "standard" modes is important...)
         //WholeTone,
         NaturalMinor,
         MelodicMinor,

@@ -1,6 +1,5 @@
 using System.Text;
 using harmonyexplorer.Shared;
-
 namespace harmonyexplorer.Harmony
 {
     public class Chord
@@ -105,8 +104,6 @@ namespace harmonyexplorer.Harmony
             {
                 var sb = new StringBuilder();
                 RootAndMinorSusModifiers(sb);
-
-
                 return sb.ToString();
             }
         }
@@ -124,12 +121,9 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-
                 RootAndMinorSusModifiers(sb);
                 MajModifier(sb);
                 sb.Append("7");
-
-
                 return sb.ToString();
             }
         }
@@ -138,9 +132,7 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-
                 FlatSharpModifiers5(sb);
-
                 return sb.ToString();
             }
         }
@@ -151,7 +143,6 @@ namespace harmonyexplorer.Harmony
                 var sb = new StringBuilder();
                 RootAndMinorSusModifiers(sb);
                 MajModifier(sb);
-
                 if (Perfect9)
                 {
                     sb.Append("9");
@@ -160,9 +151,6 @@ namespace harmonyexplorer.Harmony
                 {
                     sb.Append("7");
                 }
-
-
-
                 return sb.ToString();
             }
         }
@@ -171,9 +159,7 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-
                 FlatSharpModifiers9(sb);
-
                 return sb.ToString();
             }
         }
@@ -184,15 +170,9 @@ namespace harmonyexplorer.Harmony
                 var sb = new StringBuilder();
                 RootAndMinorSusModifiers(sb);
                 MajModifier(sb);
-
                 if (Perfect11) sb.Append("11");
                 if (!Perfect11 && Perfect9) sb.Append("9");
-
                 if (!Perfect11 && !Perfect11 && !Perfect9) sb.Append("7");
-
-
-
-
                 return sb.ToString();
             }
         }
@@ -201,9 +181,7 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-
                 FlatSharpModifiers11(sb);
-
                 return sb.ToString();
             }
         }
@@ -214,16 +192,10 @@ namespace harmonyexplorer.Harmony
                 var sb = new StringBuilder();
                 RootAndMinorSusModifiers(sb);
                 MajModifier(sb);
-
                 if (Perfect13) sb.Append("13");
-
                 if (!Perfect13 && Perfect11) sb.Append("11");
                 if (!Perfect13 && !Perfect11 && Perfect9) sb.Append("9");
                 if (!Perfect13 && !Perfect11 && !Perfect9) sb.Append("7");
-
-
-
-
                 return sb.ToString();
             }
         }
@@ -232,9 +204,7 @@ namespace harmonyexplorer.Harmony
             get
             {
                 var sb = new StringBuilder();
-
                 FlatSharpModifiers13(sb);
-
                 return sb.ToString();
             }
         }
@@ -276,7 +246,6 @@ namespace harmonyexplorer.Harmony
         {
             if (UnknownBaseStep + Unknown7Step + Unknown9Step + Unknown11Step + Unknown13Step != string.Empty)
                 return UnknownBaseStep + Unknown7Step + Unknown9Step + Unknown11Step + Unknown13Step;
-
             switch (extension)
             {
                 case UpperExtensionEnum.Triads:
@@ -297,7 +266,6 @@ namespace harmonyexplorer.Harmony
         {
             if (UnknownBaseStep + Unknown7Step + Unknown9Step + Unknown11Step + Unknown13Step != string.Empty)
                 return UnknownBaseStep + Unknown7Step + Unknown9Step + Unknown11Step + Unknown13Step;
-
             switch (extension)
             {
                 case UpperExtensionEnum.Triads:
