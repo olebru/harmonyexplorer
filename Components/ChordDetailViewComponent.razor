@@ -5,8 +5,9 @@
             <div class=>@chord.PlainTextChordWithOutModifiers(@chord.IncludedExtensions)</div>
             <div class="text-sm">@chord.Modifiers(@chord.IncludedExtensions)</div>
         </div>
-        <div>Parts :</div>
+       <div class="py-1">Parts :
         <div class="grid grid-cols-7 gap-4">
+             
             @foreach (var ext in Helpers.AllExtensions)
             {
                 int rootOffset = Array.IndexOf(chord.NoteNamesInOriginScale, chord.NoteNamesInOriginScale.Single(n => n.Name
@@ -43,6 +44,8 @@
                 }
             }
         </div>
+        </div>
+
         <div class="text-xs text-grey-500">
             Testing of drilldown to chord. For now only showing all notes to build chord. <br> Plans? 5o5, how to get to
             this chord, common subs etc.

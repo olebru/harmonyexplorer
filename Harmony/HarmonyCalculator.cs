@@ -8,7 +8,7 @@ namespace harmonyexplorer.Harmony
 {
     public class HarmonyCalculator
     {
-        public static Note[] Notes(Note root, ModeEnum mode)
+        public static (Note[], bool) Notes(Note root, ModeEnum mode)
         {
             var funcRelative = FunctionalScale.GetAbsouluteOffsetFromRoot(mode, 1);
             var sharp = root.Name.Contains(Helpers.SHARPCHAR);
@@ -54,40 +54,44 @@ namespace harmonyexplorer.Harmony
                     result[i] = new Note(names[idxCurrentName]);
                 }
             }
-            return result[range];
+
+            var resultWithSharpFlag = (Notes: result[range], Sharp: sharp);
+
+            return resultWithSharpFlag;
         }
-        public static Chord[] Chords(Note root, ModeEnum mode)
+        public static (Chord[], bool) Chords(Note root, ModeEnum mode)
         {
             var rootNames = Notes(root, mode);
-            Chord[] result = new Chord[rootNames.Length];
+            Chord[] result = new Chord[rootNames.Item1.Length];
             //10 Octaves to prevent running out, if odd scales... its a magic number... kind of should be enough...
             var relativeStepsFromRoot = FunctionalScale.GetAbsouluteOffsetFromRoot(mode, octaves: 10);
-            for (int i = 0; i < rootNames.Length; i++)
+            for (int i = 0; i < rootNames.Item1.Length; i++)
             {
-                string name = rootNames[i].Name;
+                string name = rootNames.Item1[i].Name;
                 int stepsToThird = relativeStepsFromRoot[i + 2] - relativeStepsFromRoot[i];
                 int stepsToFifth = relativeStepsFromRoot[i + 4] - relativeStepsFromRoot[i];
                 int stepsToSeventh = relativeStepsFromRoot[i + 6] - relativeStepsFromRoot[i];
                 int stepsToNinth = relativeStepsFromRoot[i + 8] - relativeStepsFromRoot[i];
                 int stepsToEleventh = relativeStepsFromRoot[i + 10] - relativeStepsFromRoot[i];
                 int stepsToThrirteenth = relativeStepsFromRoot[i + 12] - relativeStepsFromRoot[i];
-                var c = new Chord(name, stepsToThird, stepsToFifth, stepsToSeventh, stepsToNinth, stepsToEleventh, stepsToThrirteenth, rootNames);
+                var c = new Chord(name, stepsToThird, stepsToFifth, stepsToSeventh, stepsToNinth, stepsToEleventh, stepsToThrirteenth, rootNames.Item1);
                 result[i] = c;
             }
-            return result;
+            return (result, rootNames.Item2);
         }
         public static ModeWithChords GetModeWithChords(Note root, ModeEnum mode)
         {
             var chords = Chords(root, mode);
             var result = new ModeWithChords();
             result.Mode = mode;
-            result.First = chords[0];
-            result.Second = chords[1];
-            result.Third = chords[2];
-            result.Fourth = chords[3];
-            result.Fifth = chords[4];
-            result.Sixth = chords[5];
-            result.Seventh = chords[6];
+            result.First = chords.Item1[0];
+            result.Second = chords.Item1[1];
+            result.Third = chords.Item1[2];
+            result.Fourth = chords.Item1[3];
+            result.Fifth = chords.Item1[4];
+            result.Sixth = chords.Item1[5];
+            result.Seventh = chords.Item1[6];
+            result.SharpAnnotation = chords.Item2;
             return result;
         }
         public static List<List<ModeWithChords>> GetAllModesWithChords(Note root)
