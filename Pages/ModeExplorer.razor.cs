@@ -20,7 +20,6 @@ namespace harmonyexplorer.Pages
             ModesToShow.Add(ModeEnum.Ionian);
             UpperExtensionsToShow = new List<UpperExtensionEnum>();
             UpperExtensionsToShow.Add(UpperExtensionEnum.Triads);
-            headerValues = tempHeaderFFS;
 
             updateData();
 
@@ -92,11 +91,6 @@ namespace harmonyexplorer.Pages
             return note.Name == currentRoot.Name;
         }
 
-        // public void ChangeExtensions(UpperExtensionEnum value)
-        // {
-        //     upperExtensions = value;
-        //     updateData();
-        // }
 
         public void ToggleMode(ModeEnum mode)
         {
@@ -124,71 +118,7 @@ namespace harmonyexplorer.Pages
             }
             updateData();
         }
-        public string[] headerValues;
-        public void NextHeaderText()
-        {
-            currentHeaderIdx++;
-            if (currentHeaderIdx == 3) currentHeaderIdx = 0;
 
-            headerValues = tempHeaderFFS;
-        }
-
-        private int currentHeaderIdx = 0;
-        public string[] tempHeaderFFS
-        {
-            get
-            {
-                var allHeaderValues = new List<List<string>>();
-
-                var romanNumerals = new List<string>()
-                {
-                    "I",
-                    "II",
-                    "III",
-                    "IV",
-                    "V",
-                    "VI",
-                    "VII"
-                };
-
-
-                var integers = new List<string>()
-                {
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
-                    "7"
-
-                };
-
-
-                var names = new List<string>()
-                {
-                    "Tonic",
-                    "Supertonic",
-                    "Mediant",
-                    "Subdominant",
-                    "Dominant",
-                    "Submediant",
-                    "Leading tone"
-
-                };
-
-
-                allHeaderValues.Add(romanNumerals);
-                allHeaderValues.Add(integers);
-                allHeaderValues.Add(names);
-
-
-                return allHeaderValues[currentHeaderIdx].ToArray();
-
-
-            }
-
-        }
 
     }
 }
