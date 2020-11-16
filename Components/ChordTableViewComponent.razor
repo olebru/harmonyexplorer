@@ -15,9 +15,7 @@
                                 <div class = "grid grid-cols-7">
                                         @foreach (var chord in modeWithChords.Chords)
                                         {
-                                                <ChordViewComponent chord = "@chord" extension = "@extension"/>
-                                              
-                                                
+                                                <ChordViewComponent chord = "@chord" extension = "@extension" modeWithChords="@modeWithChords"/>
                                         }
                                 </div>                             
                         }

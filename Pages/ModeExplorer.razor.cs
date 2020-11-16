@@ -92,11 +92,6 @@ namespace harmonyexplorer.Pages
             return note.Name == currentRoot.Name;
         }
 
-        // public void ChangeExtensions(UpperExtensionEnum value)
-        // {
-        //     upperExtensions = value;
-        //     updateData();
-        // }
 
         public void ToggleMode(ModeEnum mode)
         {

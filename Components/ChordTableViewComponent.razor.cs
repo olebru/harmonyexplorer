@@ -11,10 +11,8 @@ namespace harmonyexplorer.Components
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
-
-
-
         }
+
 
         [Parameter]
         public List<UpperExtensionEnum> upperExtensions { get; set; }
