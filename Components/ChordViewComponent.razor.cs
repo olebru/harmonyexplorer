@@ -24,5 +24,7 @@ namespace harmonyexplorer.Components
         [Parameter]
         public Chord chord { get; set; }
 
+        [Parameter]
+        public ModeWithChords modeWithChords { get; set; }
     }
 }
