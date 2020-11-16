@@ -2,7 +2,7 @@
 <div class="fixed rounded inset-0 flex items-center justify-center @(chord.ShowDetails ? "" : "hidden")"
     @onclick="Close">
     <div class="w-full h-full sm:w-2/4 sm:h-auto p-1 bg-opacity-100 bg-blue-100 rounded fixed shadow-lg text-blue-700">
-        <div class="inline-flex font-bold p-2">
+        <div class="inline-flex font-bold p-5 rounded bg-blue-200">
             <div class=>@chord.PlainTextChordWithOutModifiers(@chord.IncludedExtensions)</div>
             <div class="text-sm">@chord.Modifiers(@chord.IncludedExtensions)</div>
         </div>
@@ -61,7 +61,12 @@
                     <div class="table-cell px-4 py-2">Notes in chord:</div>
                     <div class="table-cell px-4 py-2">@ChordComponentsAsText</div>
                 </div>
-
+                <div class="table-row">
+                    <div class="table-cell px-4 py-2">Plainest voicing...</div>
+                    <div class="table-cell px-4 py-2">
+                        <PianoChordView chord="@chord" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
