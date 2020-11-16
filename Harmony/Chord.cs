@@ -1,12 +1,14 @@
+using System;
 using System.Text;
+using System.Collections.Generic;
 using harmonyexplorer.Shared;
 namespace harmonyexplorer.Harmony
 {
     public class Chord
     {
-        public Chord(string RootName, int StepsToThird, int StepsToFifth, int StepsToSeventh, int StepsToNinth, int StepsToEleventh, int StepsToThrirteenth, Note[] NoteNamesInOriginScale)
+        public Chord(Note Root, int StepsToThird, int StepsToFifth, int StepsToSeventh, int StepsToNinth, int StepsToEleventh, int StepsToThrirteenth, Note[] NoteNamesInOriginScale)
         {
-            this.RootName = RootName;
+            this.Root = Root;
             this.StepsToThird = StepsToThird;
             this.StepsToFifth = StepsToFifth;
             this.StepsToSeventh = StepsToSeventh;
@@ -24,7 +26,7 @@ namespace harmonyexplorer.Harmony
         public int StepsToNinth { get; set; }
         public int StepsToEleventh { get; set; }
         public int StepsToThirteenth { get; set; }
-        public string RootName { get; set; }
+        public Note Root { get; set; }
         public bool Sus2 { get { return StepsToThird == 2; } }
         public bool Minor { get { return StepsToThird == 3; } }
         public bool Perfect3 { get { return StepsToThird == 4; } }
@@ -45,6 +47,53 @@ namespace harmonyexplorer.Harmony
         public bool Flat13 { get { return StepsToThirteenth == 20; } }
         public bool Perfect13 { get { return StepsToThirteenth == 21; } }
         public bool Sharp13 { get { return StepsToThirteenth == 22; } }
+        public int FunctionInOriginalScale
+        {
+            get
+            {
+                var function = Array.IndexOf(NoteNamesInOriginScale, Root) + 1;
+                return function;
+            }
+        }
+        public Note GetRelativeChromaticNote(int halfstepsabove, bool sharpAnnotation)
+        {
+            var chromaticScale = sharpAnnotation ? Helpers.Sharps : Helpers.Flats;
+            var idxOfSelf = Array.IndexOf(chromaticScale, Root.Name);
+            var resultIdx = (idxOfSelf + halfstepsabove) % chromaticScale.Length;
+            return new Note(chromaticScale[resultIdx]);
+        }
+        public List<Note> GetNotesInChord()
+        {
+            var result = new List<Note>();
+            foreach (var ext in Helpers.AllExtensions)
+            {
+                int rootOffset = Array.IndexOf(NoteNamesInOriginScale, Root);
+                if ((int)ext <= (int)IncludedExtensions)
+                {
+                    switch (ext)
+                    {
+                        case UpperExtensionEnum.Triads:
+                            result.Add(NoteNamesInOriginScale[(1 + rootOffset - 1) % (NoteNamesInOriginScale.Length)]);
+                            result.Add(NoteNamesInOriginScale[(3 + rootOffset - 1) % (NoteNamesInOriginScale.Length)]);
+                            result.Add(NoteNamesInOriginScale[(5 + rootOffset - 1) % (NoteNamesInOriginScale.Length)]);
+                            break;
+                        case UpperExtensionEnum.Sevenths:
+                            result.Add(NoteNamesInOriginScale[(7 + rootOffset - 1) % (NoteNamesInOriginScale.Length)]);
+                            break;
+                        case UpperExtensionEnum.Ninths:
+                            result.Add(NoteNamesInOriginScale[(9 + rootOffset - 1) % (NoteNamesInOriginScale.Length)]);
+                            break;
+                        case UpperExtensionEnum.Ellevenths:
+                            result.Add(NoteNamesInOriginScale[(11 + rootOffset - 1) % (NoteNamesInOriginScale.Length)]);
+                            break;
+                        case UpperExtensionEnum.Thirteenths:
+                            result.Add(NoteNamesInOriginScale[(13 + rootOffset - 1) % (NoteNamesInOriginScale.Length)]);
+                            break;
+                    }
+                }
+            }
+            return result;
+        }
         public bool Diminished
         {
             get
@@ -210,7 +259,7 @@ namespace harmonyexplorer.Harmony
         }
         private void RootAndMinorSusModifiers(StringBuilder sb)
         {
-            sb.Append(RootName);
+            sb.Append(Root.Name);
             if (Minor && !Diminished) sb.Append(Helpers.MINORCHAR);
             if (Sus2) sb.Append(Helpers.SUS2STRING);
             if (Sus4) sb.Append(Helpers.SUS4STRING);

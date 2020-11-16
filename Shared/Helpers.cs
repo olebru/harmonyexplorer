@@ -118,5 +118,78 @@ namespace harmonyexplorer.Shared
 
             }
         }
+
+        public static List<string> ChordFunctionNamingConventionRomanNumerals
+        {
+
+            get
+            {
+                var result = new List<String>()
+                {
+                    "I",
+                    "II",
+                    "III",
+                    "IV",
+                    "V",
+                    "VI",
+                    "VII"
+
+                };
+                return result;
+
+            }
+        }
+        public static List<string> ChordFunctionNamingConventionNumbers
+        {
+
+            get
+            {
+                var result = new List<String>()
+                {
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                };
+                return result;
+
+            }
+        }
+        public static List<string> ChordFunctionNamingDescriptiveNames
+        {
+
+            get
+            {
+                var result = new List<String>()
+                {
+                         "Tonic",
+                    "Supertonic",
+                    "Mediant",
+                    "Subdominant",
+                    "Dominant",
+                    "Submediant",
+                    "Leading tone"
+                };
+                return result;
+
+            }
+        }
+        public static List<List<string>> AllChordFunctionNamingConventions
+        {
+
+            get
+            {
+                var result = new List<List<string>>();
+                result.Add(ChordFunctionNamingConventionNumbers);
+                result.Add(ChordFunctionNamingConventionRomanNumerals);
+                result.Add(ChordFunctionNamingDescriptiveNames);
+
+                return result;
+
+            }
+        }
     }
 }
