@@ -1,7 +1,7 @@
 <div class="pt-3 grid grid-cols-7">                         
         @foreach (var headerText in headerValues)
         {
-                <button class="text-left font-bold bg-blue-200 text-blue-900 py-0 px-0 w-full focus:outline-none text-xs md:text-sm lg:text-base">@headerText</button>
+                <button class="text-left font-bold bg-blue-200 text-blue-900 py-0 px-0 w-full focus:outline-none text-xs md:text-sm lg:text-base" @onclick="@NextHeaderText">@headerText</button>
         }
 </div>            
         @foreach (var modeList in data)
