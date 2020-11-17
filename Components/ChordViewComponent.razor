@@ -1,4 +1,5 @@
-<button class="text-left bg-blue-100 text-blue-900 py-0 px-0 w-full focus:outline-none text-xs md:text-sm lg:text-base"
+<button
+    class="text-left bg-blue-100 py-0 px-0 w-full focus:outline-none text-xs md:text-sm lg:text-base @(hidden ? "text-blue-200" : "text-blue-900")"
     @onclick="ShowDetails">
     <div class="inline-flex">
         <div class="text-sm md:text-base">@chord.PlainTextChordWithOutModifiers(extension)</div>
@@ -7,5 +8,5 @@
 </button>
 @if (chord.ShowDetails)
 {
-    <ChordDetailViewComponent chord="@chord" extension="@extension" modeWithChords="@modeWithChords" />
+    <ChordDetailViewComponent chord="@chord" modeWithChords="@modeWithChords" extension="@extension" />
 }
