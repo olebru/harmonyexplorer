@@ -15,7 +15,10 @@
                                 <div class = "grid grid-cols-7">
                                         @foreach (var chord in modeWithChords.Chords)
                                         {
-                                                <ChordViewComponent chord = "@chord" extension = "@extension" modeWithChords="@modeWithChords"/>
+                                                modeWithChords.Chords[Array.IndexOf(modeWithChords.Chords,chord)].IncludedExtensions = extension; //Dirty Hack FIXME
+                                                var hide = chord.NotUseful && hidelessuseful; 
+                                                <div><ChordViewComponent chord = "@chord" extension = "@extension" modeWithChords="@modeWithChords" hidden="@hide"/></div>
+                                              
                                         }
                                 </div>                             
                         }

@@ -32,7 +32,6 @@ namespace harmonyexplorer.Harmony
                 {
                     idxOfRoot = Array.IndexOf(Helpers.Sharps, Root.Name);
                 }
-
                 result.Add(0 + idxOfRoot);
                 result.Add(StepsToThird + idxOfRoot);
                 result.Add(StepsToFifth + idxOfRoot);
@@ -44,13 +43,20 @@ namespace harmonyexplorer.Harmony
                 result.Add(StepsToEleventh + idxOfRoot);
                 if (IncludedExtensions == UpperExtensionEnum.Ellevenths) return result.ToArray();
                 result.Add(StepsToThirteenth + idxOfRoot);
-
-
                 return result.ToArray();
             }
-
         }
         public Note[] NoteNamesInOriginScale { get; set; }
+        public bool NotUseful
+        {
+            get
+            {
+                if (IncludedExtensions == UpperExtensionEnum.Triads) return false;
+                if (IncludedExtensions == UpperExtensionEnum.Sevenths) return false;
+
+                return (Minor && Flat9);
+            }
+        }
         public bool ShowDetails { get; set; } = false;
         public int StepsToThird { get; set; }
         public int StepsToFifth { get; set; }
