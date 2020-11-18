@@ -1,134 +1,60 @@
-<div class="piano">
-    <div class="piano-container">
-
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(0) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(1) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(2) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(3) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(4) ? "white-high" : "white")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(5) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(6) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(7) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(8) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(9) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(10) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(11) ? "white-high" : "white")"></div>
-        </div>
-
-
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(12) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(13) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(14) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(15) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(16) ? "white-high" : "white")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(17) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(18) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(19) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(20) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(21) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(22) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(23) ? "white-high" : "white")"></div>
-        </div>
-
-
-
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(24) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(25) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(26) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(27) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(28) ? "white-high" : "white")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(29) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(30) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(31) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(32) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(33) ? "white-high" : "white")"></div>
-            <div class="@(chord.RelativeStepsFromC.Contains(34) ? "black-high" : "black")"></div>
-        </div>
-        <div class="mainkey">
-            <div class="@(chord.RelativeStepsFromC.Contains(35) ? "white-high" : "white")"></div>
-        </div>
-
-
-
-
+<div class="table-row">
+    <div class="table-cell px-4 py-2">Basic voicing.
+    </div>
+    <div class="table-cell px-4 py-2">
+        <PianoKeysView halfsteps="@chord.RelativeStepsFromC" />
     </div>
 </div>
+@if (chord.IncludedExtensions == UpperExtensionEnum.Ellevenths && chord.EleventhStringModifiers == string.Empty)
+{
+    <div class="table-row">
+        <div class="table-cell px-4 py-2">Root+Ext.
+        </div>
+        <div class="table-cell px-4 py-2">
+            @{
+                var steps11 = new int[4];
+                steps11[0] = chord.RelativeStepsFromC[0];
+                steps11[1] = chord.RelativeStepsFromC[3];
+                steps11[2] = chord.RelativeStepsFromC[4];
+                steps11[3] = chord.RelativeStepsFromC[5];
 
 
-<!--<div class="pianocontainer">
-    <div class="white key c"></div>
-    <div class="black key c#"></div>
-    <div class="white key d"></div>
-    <div class="black key d#"></div>
-    <div class="white key e"></div>
-    <div class="white key f"></div>
-    <div class="black key f#"></div>
-    <div class="white key g"></div>
-    <div class="black key g#"></div>
-    <div class="white key a"></div>
-    <div class="black key a#"></div>
-    <div class="white key b"></div>
+            }
+            <PianoKeysView halfsteps="@steps11" />
+        </div>
+    </div>
+}
+@if (chord.IncludedExtensions == UpperExtensionEnum.Thirteenths && chord.ThirteenthStringModifiers == string.Empty)
+{
+    <div class="table-row">
+        <div class="table-cell px-4 py-2">Buttery.
+        </div>
+        <div class="table-cell px-4 py-2">
+            @{
+                var steps13_1 = new int[5];
+                steps13_1[0] = chord.RelativeStepsFromC[0];
+                steps13_1[1] = chord.RelativeStepsFromC[3];
+                steps13_1[2] = chord.RelativeStepsFromC[4];
+                steps13_1[3] = chord.RelativeStepsFromC[5];
+                steps13_1[4] = chord.RelativeStepsFromC[6];
 
-    <div class="white key c"></div>
-    <div class="black key c#"></div>
-    <div class="white key d"></div>
-    <div class="black key d#"></div>
-    <div class="white key e"></div>
-    <div class="white key f"></div>
-    <div class="black key f#"></div>
-    <div class="white key g"></div>
-    <div class="black key g#"></div>
-    <div class="white key a"></div>
-    <div class="black key a#"></div>
-    <div class="white key b"></div>
+            }
+            <PianoKeysView halfsteps="@steps13_1" />
+        </div>
+    </div>
+    <div class="table-row">
+        <div class="table-cell px-4 py-2">My fav.
+        </div>
+        <div class="table-cell px-4 py-2">
+            @{
+                var steps13_2 = new int[4];
+                steps13_2[0] = chord.RelativeStepsFromC[0];
+                steps13_2[1] = chord.RelativeStepsFromC[1] + 12;
+                steps13_2[2] = chord.RelativeStepsFromC[3];
+                steps13_2[3] = chord.RelativeStepsFromC[6];
 
-    <div class="white key c"></div>
-    <div class="black key c#"></div>
-    <div class="white key d"></div>
-    <div class="black key d#"></div>
-    <div class="white key e"></div>
-    <div class="white key f"></div>
-    <div class="black key f#"></div>
-    <div class="white key g"></div>
-    <div class="black key g#"></div>
-    <div class="white key a"></div>
-    <div class="black key a#"></div>
-    <div class="white key b"></div>
-</div>-->
+            }
+            <PianoKeysView halfsteps="@steps13_2" />
+        </div>
+    </div>
+}
