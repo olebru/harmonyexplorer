@@ -1,65 +1,66 @@
 <div class="fixed inset-0 w-screen h-screen bg-blue-600 bg-opacity-25 @(chord.ShowDetails ? "" : "hidden")" />
 <div class="fixed rounded inset-0 flex items-center justify-center @(chord.ShowDetails ? "" : "hidden")"
     @onclick="Close">
-    <div class="w-full h-full sm:w-2/4 sm:h-auto p-1 bg-opacity-100 bg-blue-100 rounded fixed shadow-lg text-blue-700">
-        <div class="inline-flex font-bold p-5 rounded bg-blue-200">
-            <div class=>@chord.PlainTextChordWithOutModifiers(@chord.IncludedExtensions)</div>
-            <div class="text-sm">@chord.Modifiers(@chord.IncludedExtensions)</div>
-        </div>
+    <div class="w-full h-full md:w-2/4 sm:h-auto bg-opacity-100 bg-blue-100 rounded fixed shadow-lg text-blue-700">
         <div class="table w-auto div text-xs md:text-sm">
             <div class="table-row-group">
                 @if (chord.Flat9 && chord.Minor && chord.IncludedExtensions > UpperExtensionEnum.Sevenths)
                 {
-                    <div class="table-row">
-                        <div class="table-cell px-4 py-2">Hint:</div>
-                        <div class="table-cell px-4 py-2">Minor Flat 9, not very useful.
+                        <div class="table-row">
+                            <div class="table-cell px-4 py-0">Hint:</div>
+                            <div class="table-cell px-4 py-0">Minor Flat 9, not very useful.
+                            </div>
                         </div>
-                    </div>
                 }
                 <div class="table-row">
-                    <div class="table-cell px-4 py-2">Function:</div>
-                    <div class="table-cell px-4 py-2">
+                    <div class="table-cell px-4 py-0">
+                        <div class ="inline-flex">
+                            <div class=>@chord.PlainTextChordWithOutModifiers(@chord.IncludedExtensions)</div>
+                            <div class="text-sm">@chord.Modifiers(@chord.IncludedExtensions)</div>
+                        </div>
+                    </div>
+                    <div class="table-cell px-4 py-0">
                         @Helpers.ChordFunctionNamingDescriptiveNames[chord.FunctionInOriginalScale -1] chord in the
                         scale.
                     </div>
                 </div>
                 <div class="table-row">
-                    <div class="table-cell px-4 py-2">Fifth of:</div>
-                    <div class="table-cell px-4 py-2">
+                    <div class="table-cell px-4 py-0">Fifth of:</div>
+                    <div class="table-cell px-4 py-0">
                         @chord.GetRelativeChromaticNote(5,modeWithChords.SharpAnnotation).Name</div>
                 </div>
                 <div class="table-row">
-                    <div class="table-cell px-4 py-2">Fifth:</div>
-                    <div class="table-cell px-4 py-2">
+                    <div class="table-cell px-4 py-0">Fifth:</div>
+                    <div class="table-cell px-4 py-0">
                         @chord.GetRelativeChromaticNote(7,modeWithChords.SharpAnnotation).Name</div>
                 </div>
                 @if (!chord.Flat5 && !chord.Sus2 && !chord.Sus4)
                 {
                     if (chord.Minor)
                     {
-                        <div class="table-row">
-                            <div class="table-cell px-4 py-2">Relative Major:</div>
-                            <div class="table-cell px-4 py-2">
-                                @chord.GetRelativeChromaticNote(3,modeWithChords.SharpAnnotation).Name</div>
-                        </div>
+                                <div class="table-row">
+                                    <div class="table-cell px-4 py-0">Relative Major:</div>
+                                    <div class="table-cell px-4 py-0">
+                                        @chord.GetRelativeChromaticNote(3,modeWithChords.SharpAnnotation).Name</div>
+                                </div>
                     }
                     if (!chord.Minor)
                     {
-                        <div class="table-row">
-                            <div class="table-cell px-4 py-2">Relative Minor:</div>
-                            <div class="table-cell px-4 py-2">
-                                @(chord.GetRelativeChromaticNote(9,modeWithChords.SharpAnnotation).Name)m(7)</div>
-                        </div>
+                                <div class="table-row">
+                                    <div class="table-cell px-4 py-0">Relative Minor:</div>
+                                    <div class="table-cell px-4 py-0">
+                                        @(chord.GetRelativeChromaticNote(9,modeWithChords.SharpAnnotation).Name)m(7)</div>
+                                </div>
                     }
                 }
                 <div class="table-row">
-                    <div class="table-cell px-4 py-2">Tritone:</div>
-                    <div class="table-cell px-4 py-2">
+                    <div class="table-cell px-4 py-0">Tritone:</div>
+                    <div class="table-cell px-4 py-0">
                         @chord.GetRelativeChromaticNote(6,modeWithChords.SharpAnnotation).Name</div>
                 </div>
                 <div class="table-row">
-                    <div class="table-cell px-4 py-2">Notes in chord:</div>
-                    <div class="table-cell px-4 py-2">@ChordComponentsAsText</div>
+                    <div class="table-cell px-4 py-0">Notes in chord:</div>
+                    <div class="table-cell px-4 py-0">@ChordComponentsAsText</div>
                 </div>
                 <PianoChordView chord="@chord" />
             </div>
