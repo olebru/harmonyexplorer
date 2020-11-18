@@ -6,7 +6,7 @@
             <div class=>@chord.PlainTextChordWithOutModifiers(@chord.IncludedExtensions)</div>
             <div class="text-sm">@chord.Modifiers(@chord.IncludedExtensions)</div>
         </div>
-        <div class="table w-auto">
+        <div class="table w-auto div text-xs md:text-sm">
             <div class="table-row-group">
                 @if (chord.Flat9 && chord.Minor && chord.IncludedExtensions > UpperExtensionEnum.Sevenths)
                 {
