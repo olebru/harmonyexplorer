@@ -1,5 +1,3 @@
-/*Downloaded from https://www.codeseek.co/Eliteware/css-piano-wDHIC */
-
 .piano {
     width: 200px;
     height: 40px;
@@ -21,9 +19,9 @@
 }
 
 .piano-container {
+    background: #fff;
     width: 100%;
     height: 100%;
-    background: #fff;
 }
 
 .mainkey {
