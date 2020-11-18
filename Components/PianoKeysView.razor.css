@@ -1,5 +1,6 @@
 .piano {
-    width: 200px;
+    width: auto;
+    min-width: 150px;
     height: 40px;
     overflow: hidden;
     background: -webkit-linear-gradient(#111, #444);
