@@ -12,15 +12,17 @@
         </div>
         <div class="table-cell px-4 py-2">
             @{
-                var steps11 = new int[4];
-                steps11[0] = chord.RelativeStepsFromC[0];
-                steps11[1] = chord.RelativeStepsFromC[3];
-                steps11[2] = chord.RelativeStepsFromC[4];
-                steps11[3] = chord.RelativeStepsFromC[5];
-
-
+                var steps = new List<int>();
+                if (chord.Minor)
+                {
+                    steps.Add(chord.RelativeStepsFromC[1]);
+                }
+                steps.Add(chord.RelativeStepsFromC[0]);
+                steps.Add(chord.RelativeStepsFromC[3]);
+                steps.Add(chord.RelativeStepsFromC[4]);
+                steps.Add(chord.RelativeStepsFromC[5]);
             }
-            <PianoKeysView halfsteps="@steps11" />
+            <PianoKeysView halfsteps="@(steps.ToArray())" />
         </div>
     </div>
 }
@@ -31,15 +33,18 @@
         </div>
         <div class="table-cell px-4 py-2">
             @{
-                var steps13_1 = new int[5];
-                steps13_1[0] = chord.RelativeStepsFromC[0];
-                steps13_1[1] = chord.RelativeStepsFromC[3];
-                steps13_1[2] = chord.RelativeStepsFromC[4];
-                steps13_1[3] = chord.RelativeStepsFromC[5];
-                steps13_1[4] = chord.RelativeStepsFromC[6];
-
+                var steps = new List<int>();
+                if (chord.Minor)
+                {
+                    steps.Add(chord.RelativeStepsFromC[1]);
+                }
+                steps.Add(chord.RelativeStepsFromC[0]);
+                steps.Add(chord.RelativeStepsFromC[3]);
+                steps.Add(chord.RelativeStepsFromC[4]);
+                steps.Add(chord.RelativeStepsFromC[5]);
+                steps.Add(chord.RelativeStepsFromC[6]);
             }
-            <PianoKeysView halfsteps="@steps13_1" />
+            <PianoKeysView halfsteps="@(steps.ToArray())" />
         </div>
     </div>
     <div class="table-row">
@@ -52,7 +57,6 @@
                 steps13_2[1] = chord.RelativeStepsFromC[1] + 12;
                 steps13_2[2] = chord.RelativeStepsFromC[3];
                 steps13_2[3] = chord.RelativeStepsFromC[6];
-
             }
             <PianoKeysView halfsteps="@steps13_2" />
         </div>
