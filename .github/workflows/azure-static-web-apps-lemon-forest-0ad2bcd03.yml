@@ -24,6 +24,8 @@ jobs:
       - run: npm install
       - run: npm install tailwindcss@latest postcss@latest autoprefixer@latest
       - run: npx tailwindcss-cli@latest build ./Styles/site.css -o ./wwwroot/site.css
+      - run: rm ./package.json
+      - run: rm -rf ./modules
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
