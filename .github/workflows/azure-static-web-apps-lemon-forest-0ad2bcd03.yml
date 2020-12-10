@@ -18,6 +18,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - run: npm install
+      - run: npm install tailwindcss@latest postcss@latest autoprefixer@latest
+      - run: npx tailwindcss-cli@latest build ./Styles/site.css -o ./wwwroot/site.css
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
