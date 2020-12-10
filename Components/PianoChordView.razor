@@ -1,0 +1,65 @@
+@using harmonyexplorer.Components
+<div class="table-row">
+    <div class="table-cell px-4 py-2">All
+    </div>
+    <div class="table-cell px-4 py-2">
+        <PianoKeysView halfsteps="@chord.RelativeStepsFromC" />
+    </div>
+</div>
+@if (chord.IncludedExtensions == UpperExtensionEnum.Ellevenths && chord.EleventhStringModifiers == string.Empty)
+{
+    <div class="table-row">
+        <div class="table-cell px-4 py-2">Root + Ext
+        </div>
+        <div class="table-cell px-4 py-2">
+            @{
+                var steps = new List<int>();
+                if (chord.Minor)
+                {
+                    steps.Add(chord.RelativeStepsFromC[1]);
+                }
+                steps.Add(chord.RelativeStepsFromC[0]);
+                steps.Add(chord.RelativeStepsFromC[3]);
+                steps.Add(chord.RelativeStepsFromC[4]);
+                steps.Add(chord.RelativeStepsFromC[5]);
+            }
+            <PianoKeysView halfsteps="@(steps.ToArray())" />
+        </div>
+    </div>
+}
+@if (chord.IncludedExtensions == UpperExtensionEnum.Thirteenths && chord.ThirteenthStringModifiers == string.Empty)
+{
+    <div class="table-row">
+        <div class="table-cell px-4 py-2">Root + Ext
+        </div>
+        <div class="table-cell px-4 py-2">
+            @{
+                var steps = new List<int>();
+                if (chord.Minor)
+                {
+                    steps.Add(chord.RelativeStepsFromC[1]);
+                }
+                steps.Add(chord.RelativeStepsFromC[0]);
+                steps.Add(chord.RelativeStepsFromC[3]);
+                steps.Add(chord.RelativeStepsFromC[4]);
+                steps.Add(chord.RelativeStepsFromC[5]);
+                steps.Add(chord.RelativeStepsFromC[6]);
+            }
+            <PianoKeysView halfsteps="@(steps.ToArray())" />
+        </div>
+    </div>
+    <div class="table-row">
+        <div class="table-cell px-4 py-2">Alt 1
+        </div>
+        <div class="table-cell px-4 py-2">
+            @{
+                var steps13_2 = new int[4];
+                steps13_2[0] = chord.RelativeStepsFromC[0];
+                steps13_2[1] = chord.RelativeStepsFromC[1] + 12;
+                steps13_2[2] = chord.RelativeStepsFromC[3];
+                steps13_2[3] = chord.RelativeStepsFromC[6];
+            }
+            <PianoKeysView halfsteps="@steps13_2" />
+        </div>
+    </div>
+}

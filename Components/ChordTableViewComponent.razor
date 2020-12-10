@@ -15,12 +15,17 @@
                                 <div class = "grid grid-cols-7">
                                         @foreach (var chord in modeWithChords.Chords)
                                         {
-                                                <ChordViewComponent chord = "@chord" extension = "@extension" modeWithChords="@modeWithChords"/>
+                                                modeWithChords.Chords[Array.IndexOf(modeWithChords.Chords,chord)].IncludedExtensions = extension; //Dirty Hack FIXME
+                                                var hide = chord.NotUseful && hidelessuseful; 
+                                                <div><ChordViewComponent chord = "@chord" extension = "@extension" modeWithChords="@modeWithChords" hidden="@hide"/></div>
+                                              
                                         }
                                 </div>                             
                         }
                 }
         }  
-<div class="text-blue-500 text-right px-1 py-2 text-xs">
+          <div class="w-full block sm:hidden border-0 text-center text-xs text-blue-600">Rotate device to
+                landscape mode.</div>
+<div class="text-blue-500 text-right sm:px-1 py-2 text-xs">
         Preview, work in progress. <a href="https://github.com/olebru/harmonyexplorer">Github</a> - Ole Idar Bruvik 2020
 </div>

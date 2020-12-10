@@ -1,5 +1,7 @@
 @page "/"
 <div class="h-screen py-0 antialiased leading-tight min-h-full">
+
+
         <button class="focus:outline-none py-1 px-1 align-self-end w-full border-0 text-right text-xs text-blue-500"
                 @onclick="@ToggleMenu">@(ShowMenu? "Hide" : "Show" )</button>
 
@@ -39,8 +41,12 @@
 
                         </div>
         }
-
-        <ChordTableViewComponent data="data" upperExtensions="UpperExtensionsToShow" />
+        <button class="focus:outline-none w-full border-0  py-1 rounded text-xs md:text-sm lg:text-base @(HideLessUsefulChords 
+                ? 
+                "bg-blue-700 text-blue-200" : "bg-blue-200 text-blue-700")"
+                @onclick="@ToggleUseFulFilter">Chord Filter</button>
+        <ChordTableViewComponent data="data" upperExtensions="UpperExtensionsToShow"
+                hidelessuseful="@HideLessUsefulChords" />
 
 
 </div>

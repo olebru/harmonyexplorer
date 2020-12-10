@@ -18,7 +18,45 @@ namespace harmonyexplorer.Harmony
             this.NoteNamesInOriginScale = NoteNamesInOriginScale;
         }
         public UpperExtensionEnum IncludedExtensions { get; set; }
+        public int[] RelativeStepsFromC
+        {
+            get
+            {
+                var result = new List<int>();
+                int idxOfRoot = 0;
+                if (Root.Name.Contains(Helpers.FLATCHAR))
+                {
+                    idxOfRoot = Array.IndexOf(Helpers.Flats, Root.Name);
+                }
+                else
+                {
+                    idxOfRoot = Array.IndexOf(Helpers.Sharps, Root.Name);
+                }
+                result.Add(0 + idxOfRoot);
+                result.Add(StepsToThird + idxOfRoot);
+                result.Add(StepsToFifth + idxOfRoot);
+                if (IncludedExtensions == UpperExtensionEnum.Triads) return result.ToArray();
+                result.Add(StepsToSeventh + idxOfRoot);
+                if (IncludedExtensions == UpperExtensionEnum.Sevenths) return result.ToArray();
+                result.Add(StepsToNinth + idxOfRoot);
+                if (IncludedExtensions == UpperExtensionEnum.Ninths) return result.ToArray();
+                result.Add(StepsToEleventh + idxOfRoot);
+                if (IncludedExtensions == UpperExtensionEnum.Ellevenths) return result.ToArray();
+                result.Add(StepsToThirteenth + idxOfRoot);
+                return result.ToArray();
+            }
+        }
         public Note[] NoteNamesInOriginScale { get; set; }
+        public bool NotUseful
+        {
+            get
+            {
+                if (IncludedExtensions == UpperExtensionEnum.Triads) return false;
+                if (IncludedExtensions == UpperExtensionEnum.Sevenths) return false;
+
+                return (Minor && Flat9);
+            }
+        }
         public bool ShowDetails { get; set; } = false;
         public int StepsToThird { get; set; }
         public int StepsToFifth { get; set; }
