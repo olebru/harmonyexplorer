@@ -26,8 +26,8 @@ jobs:
       - run: npx tailwindcss-cli@latest build ./Styles/site.css -o ./wwwroot/site.css
       - run: pwd | echo
       - run: ls | echo
-      - run: rm ./package.json
-      - run: rm -rf ./modules
+      - run: rm ./package-lock.json
+      - run: rm -rf ./node_modules
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
