@@ -23,9 +23,8 @@ jobs:
           node-version: "14"
       - run: npm install
       - run: npm install tailwindcss@latest postcss@latest autoprefixer@latest
-      - run: npx tailwindcss-cli@latest build ./Styles/site.css -o ./wwwroot/Site.css
-      - run: pwd | echo
-      - run: ls | echo
+      - run: mkdir wwwroot/css
+      - run: npx tailwindcss-cli@latest build ./Styles/site.css -o ./wwwroot/css/site.css
       - run: rm ./package-lock.json
       - run: rm -rf ./node_modules
       - name: Build And Deploy
