@@ -11,6 +11,7 @@
 package.json
 gulpfile.js
 
+
 # User-specific files
 *.rsuser
 *.suo
@@ -356,3 +357,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+wwwroot/css/site.css
