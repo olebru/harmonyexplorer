@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using harmonyexplorer.Shared;
 namespace harmonyexplorer.Harmony
 {
-    public class Chgdfsord
+    public class Chord
     {
         public Chord(Note Root, int StepsToThird, int StepsToFifth, int StepsToSeventh, int StepsToNinth, int StepsToEleventh, int StepsToThrirteenth, Note[] NoteNamesInOriginScale)
         {
